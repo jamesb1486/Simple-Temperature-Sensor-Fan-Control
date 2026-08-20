@@ -8,9 +8,11 @@ Parts Needed
 
 1. Raspberry Pi Pico
 2. 2x MOSFET Switch Driver Module, DC 5V-36V 15A
-3. Thermistor or Raspberry Pi DS18B20 Temperature Sensor Module #if not using a Creality style Thermistor
-4. 100kohm Resistor #if using a standard 3D Printer Thermistor
-5. 12v 30 amp power supply,
+3. Temperature Sensor:
+   - Creality-style 100k NTC thermistor, or
+   - DS18B20 digital temperature Sensor
+4. 100k ohm Resistor (NTC thermistor version only) 
+5. 12v 30 amp power supply
 6. 5v Step down converter
 
 [Raspberry Pi Pico](https://www.amazon.com/Raspberry-Pi-Pico/dp/B09KVB8LVR/ref=sr_1_1?crid=1XHY1XV093O4M&dib=eyJ2IjoiMSJ9.KhN-eo1QUief6dgXnlRewOD_5s_2kVFK-6pw5wXpUodNQVbIlckdR02yi6cR9Sg_BYXCIKOeg-5rRf0kVPtR-00xl0HF7jn6HqhXZzmVTqjeOJdnD_ep-k6rldBNb_QblhpAgPj0-ScpRSSNoXy-L7VPGMau7bK1a9iPrvFJmGWQwJxuSyFNoxEZua9-PcgRmSRfYMPTkXv9sBo9cz71kiapwsOsZzopDrvodLmvJ_g.svO7Rn5HoZjw09cC_z0irVLf9-0_SoNNLFxKB6CafvA&dib_tag=se&keywords=raspberry+pi+pico&qid=1787243675&sprefix=raspberry+pi+pico%2Caps%2C277&sr=8-1)
@@ -29,9 +31,9 @@ Parts Needed
 _______________________________________________________________________________________________________________________________________________________________________________________________________________
 
 ## Program Selection
-**Creality-style 100k NTC thermistor:** Use 'main.py'
+**Creality-style 100k NTC thermistor:** Use `main.py`
 
-**DS18B20 digital temperature sensor:** Use 'main_ds18b20.py'
+**DS18B20 digital temperature sensor:** Use `main_ds18b20.py`
 
 ## How It Works
 
