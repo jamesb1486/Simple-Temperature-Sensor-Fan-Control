@@ -30,8 +30,7 @@ ________________________________________________________________________________
 
 ## Program Selection
 **Creality-style 100k NTC thermistor:** Use 'main.py'
-
-**DS18B20 digital temperature sensor:**Use 'main_ds18b20.py'
+**DS18B20 digital temperature sensor:** Use 'main_ds18b20.py'
 
 ## How It Works
 
