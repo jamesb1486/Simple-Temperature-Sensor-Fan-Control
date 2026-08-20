@@ -35,39 +35,58 @@ ________________________________________________________________________________
 
 ## How It Works
 
-The controller uses a Raspberry Pi Pico running MicroPython to monitor temperature and control two 12V cooling fans using PWM (Pulse Width Modulation).
+The controller uses a Raspberry Pi Pico running MicroPython to monitor
+temperature and control two 12V cooling fans using PWM (Pulse Width Modulation).
 
-One fan is used for intake and the second fan is used for exhaust. The intake fan begins cooling first. If the enclosure temperature continues to rise, the exhaust fan turns on at the next temperature level to increase airflow through the enclosure.
+One fan is used for intake and the second fan is used for exhaust. The intake
+fan begins cooling first. If the enclosure temperature continues to rise, the
+exhaust fan activates to increase airflow through the enclosure.
 
-The basic control path is:
+The method used to read temperature depends on which sensor is installed.
 
-Temperature Sensor -> Pico ADC -> Temperature Calculation -> Control Logic -> PWM Outputs -> MOSFET Drivers -> 12V Intake and Exhaust Fans
+### 100K NTC Thermistor
 
-The Pico does not power the fans directly. The fans are powered from the 12V power supply, while the Pico provides low-voltage PWM control signals to the MOSFET drivers.
+When using a Creality-style 100K NTC thermistor with `main.py`, the basic
+temperature sensing path is:
 
-## Temperature Sensor
+    100K NTC Thermistor -> Voltage Divider -> Pico ADC -> Temperature Calculation
 
-For my projects I had several spare Creality 3D printer thermistors available, so I used a 100K NTC thermistor rather than purchasing a dedicated digital temperature sensor.
+The thermistor changes resistance as temperature changes. The Pico measures
+the resulting voltage through its ADC and the program calculates the
+thermistor resistance and temperature.
 
-The thermistor is approximately 100k ohms at 25°C and uses a Beta value of 3950 in the temperature calculation.
+### DS18B20 Digital Temperature Sensor
 
-A thermistor changes resistance as its temperature changes. Because the Raspberry Pi Pico measures voltage rather than resistance directly, the thermistor is used as part of a voltage divider.
+When using a DS18B20 temperature sensor with `main_ds18b20.py`, the basic
+temperature sensing path is:
 
-The circuit is:
+    DS18B20 -> 1-Wire GPIO -> Digital Temperature Reading
 
-    3.3V
-      |
-    100k fixed resistor
-      |
-      +------ GPIO26 / ADC0
-      |
-    100k NTC thermistor
-      |
-     GND
+The DS18B20 measures temperature internally and communicates the digital
+temperature reading directly to the Pico. Because of this, the DS18B20 does
+not require the ADC voltage divider or thermistor resistance calculations.
 
-The 100k fixed resistor was chosen because it approximately matches the thermistor's nominal resistance at room temperature. This provides a useful voltage range for the ADC around the temperatures this project is intended to monitor.
+### Fan Control Path
 
-Because this is an NTC (Negative Temperature Coefficient) thermistor, its resistance decreases as temperature increases.
+Regardless of which temperature sensor is used, the resulting temperature
+reading is passed to the same basic cooling control system:
+
+    Temperature -> Control Logic -> PWM Outputs -> MOSFET Drivers -> 12V Fans
+
+The Pico does not power the fans directly. Each fan is powered from the 12V
+power supply through a MOSFET driver module.
+
+The Pico provides low-voltage PWM control signals to the MOSFET drivers,
+allowing the program to independently control the speed of the intake and
+exhaust fans.
+
+The intake fan is activated first at the initial cooling threshold. As
+temperature increases, the controller increases the intake fan speed and
+then activates the exhaust fan. At the highest temperature threshold, both
+fans operate at full power.
+
+This staged approach provides airflow when needed without requiring both
+fans to operate at full speed continuously.
 
 ## Reading the Thermistor
 
