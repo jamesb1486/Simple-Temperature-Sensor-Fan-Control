@@ -8,14 +8,16 @@ Parts Needed
 
 1. Raspberry Pi Pico
 2. 2x MOSFET Switch Driver Module, DC 5V-36V 15A
-1 - Thermistor or Raspberry Pi DS18B20 Temperature Sensor Module,
-1 - 100kohm Resistor (if using a standard 3D Printer Thermistor),
-1 - 12v 30 amp power supply,
-1 - 5v Step down converter
+3. Thermistor or Raspberry Pi DS18B20 Temperature Sensor Module #if not using a Creality style Thermistor
+4. 100kohm Resistor #if using a standard 3D Printer Thermistor
+5. 12v 30 amp power supply,
+6. 5v Step down converter
 
 [Raspberry Pi Pico](https://www.amazon.com/Raspberry-Pi-Pico/dp/B09KVB8LVR/ref=sr_1_1?crid=1XHY1XV093O4M&dib=eyJ2IjoiMSJ9.KhN-eo1QUief6dgXnlRewOD_5s_2kVFK-6pw5wXpUodNQVbIlckdR02yi6cR9Sg_BYXCIKOeg-5rRf0kVPtR-00xl0HF7jn6HqhXZzmVTqjeOJdnD_ep-k6rldBNb_QblhpAgPj0-ScpRSSNoXy-L7VPGMau7bK1a9iPrvFJmGWQwJxuSyFNoxEZua9-PcgRmSRfYMPTkXv9sBo9cz71kiapwsOsZzopDrvodLmvJ_g.svO7Rn5HoZjw09cC_z0irVLf9-0_SoNNLFxKB6CafvA&dib_tag=se&keywords=raspberry+pi+pico&qid=1787243675&sprefix=raspberry+pi+pico%2Caps%2C277&sr=8-1)
 
 [MOSFET Switch Driver Module](https://www.amazon.com/MateIJS-Control-Compatible-Arduino-Raspberry/dp/B0DX2KCZHL/ref=sr_1_3?crid=1098PVDE7VI0Y&dib=eyJ2IjoiMSJ9.E9SQ9M8ePaFU2VKAldSm6w.dvDomMb5uBNV7Jm7_atJXIYY9SFruHuHKS6ZeNKpaXc&dib_tag=se&keywords=B0Dx2kczhl+Mosfet&qid=1787241375&sprefix=b0dx2kczhl+mosfe%2Caps%2C498&sr=8-3)
+
+[Creality Thermistor](https://www.amazon.com/Creality-Original-3D-Thermistor-Replacement/dp/B0BJJQGC17/ref=sr_1_1?crid=16WL3X8RL9ZOD&dib=eyJ2IjoiMSJ9.vcwHXwvTHSoBG-flEEpa63VQ7sba_rD-0oqznLsT93v6--qunzdEHoSmPyiV_ORtoFVx9ZcwTvdxOkj11C4XnHcw6fOGOXA9QQZEvfCthy7BIqN3njGkU-ObPO3hzxLbxrQwLNuqHELmvbBuCG4p7rVn09VMlHK1JIndux5FpdqPkAuIs84m0pq-5ZVdphz4JIC9bx4ZhKzz2iufgNzExIc-TufUjEJqEZQxlslhQbE.2LgPWcbzaxBcFaR4Nuge2aMXb4JOQbsKX3mdREZ0J7A&dib_tag=se&keywords=creality+thermistor&qid=1787249374&sprefix=creality+thermisto%2Caps%2C268&sr=8-1)
 
 [Temperature Sensor Module](https://www.amazon.com/BOJACK-Temperature-Waterproof-Stainless-Raspberry/dp/B09NVWNGLQ/ref=sr_1_1?crid=3H3SZ1BE2FXTM&dib=eyJ2IjoiMSJ9.-bYFStbANNzH_Z59FVSTqZAucB0Q5q-ZYopfw7iiU0elEEN9lpa5ZYrszSiP5sGhmc9PBS9Kz_e0t3w6tQ5UK7HCldIb9d7xAN88TCJJRMnqATKbeH7fr5Dm9hBMAi-hFA7buXeH_cEGF3W0-b5vNxMnh-HFwziR0JsVvFzDC0qLmJBobN0hU-uSlpuOupmxPsIdWuAT4FWlrb1Jt6Kbs20JXtfEtnWq5NIWafheD1c.WXjQqk5iPsmjBoSMktqW7g07J3Zp3ixlYOcj9xah9Eo&dib_tag=se&keywords=raspberry+pi+temperature+sensor&qid=1787243316&sprefix=raspberry+pi+temperature+senso%2Caps%2C245&sr=8-1)
 
@@ -25,6 +27,10 @@ Parts Needed
 
 [5v step down converter Regulator](https://www.amazon.com/eleUniverse-DC-Step-Down-Converter/dp/B0GGGN73DB/ref=sr_1_6?crid=117AAYUYMLJH9&dib=eyJ2IjoiMSJ9.mu-WE_Vpqeye--wNsQxvRO7ReCOCK9tLlosc9AJL0SrxRMnarFzKepC3EvDgrE6f9ko5kN-AVlTrcmJCyxu3U0V_ZxRvOdYG2Djm6abyRiUUQRRbEmsuR26bD1s3_j-qbWuAEDanxn-gByJHI2BrHfDZ1wI_fcDk5tgdxOr2vFfHGu0iDfwmpa5W8JnOvBlbs7qufXuknLVTlblGgANwUKg14yXKk_jLS-QWTdfjVk8.UQCqi08t6W7IGeTjz3T1LIOOZId9f_YPcUi6_eZuxvU&dib_tag=se&keywords=5v%2B5amp%2Bstep%2Bdown%2Bregulator&qid=1787243907&sprefix=5v%2B5amp%2Bstep%2Bdown%2Bregulator%2Caps%2C220&sr=8-6&th=1)
 _______________________________________________________________________________________________________________________________________________________________________________________________________________
+
+## Program Selection
+**Creality-style 100k NTC thermistor:** Use 'main.py'
+**DS18B20 digital temperature sensor:**Use 'main_ds18b20.py'
 
 ## How It Works
 
